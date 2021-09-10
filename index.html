@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+      <script src="jquery.js"></script>
+      <link rel="stylesheet" href="style.css">
+      <script>
+         var projectListCounter = 0;
+         var projectClickCounter = 0;
+         const projects = [
+            "project title a",
+            "project title b",
+            "project title c"
+         ];
+            function projectList(){
+            while (projectListCounter != projects.length){
+               document.currentScript.insertAdjacentHTML("beforeBegin","<section id='project"+projectListCounter+"' class='projectz' onclick='projectModal(this.id)'>"+projects[projectListCounter]+"</section>");
+               projectListCounter++;
+            }
+         }
+     
+            function projectModal(clicked_id){
+               var projectId = document.getElementById(clicked_id).innerHTML;
+               while (projectId != projects[projectClickCounter]){
+                  projectClickCounter++;
+               }
+
+               document.getElementById('modal-content').innerHTML = "<div class='modal-title'>"+projects[projectClickCounter]+"</div><button class='modal-item'>description<span class='modal-down'>+</span></button><div class='panel'><p>content</p></div><button class='modal-item'>tracklist<span class='modal-down'>+</span></button><div class='panel'><p>content</p></div><button class='modal-item'>cover art<span class='modal-down'>+</span></button><div class='panel'><p>content</p></div><button class='modal-item'>music videos<span class='modal-down'>+</span></button><div class='panel'><p>content</p></div><button class='modal-item'>notes<span class='modal-down'>+</span></button><div class='panel'><p>content</p></div><button class='modal-item'>listen<span class='modal-down'>+</span></button><div class='panel'><p>content</p></div>";
+               var acc = document.getElementsByClassName("modal-item");
+         var i;
+         for (i = 0; i < acc.length; i++) {
+           acc[i].addEventListener("click", function() {
+             this.classList.toggle("active");
+             var panel = this.nextElementSibling;
+             if (panel.style.maxHeight) {
+               panel.style.maxHeight = null;
+             } else {
+               panel.style.maxHeight = panel.scrollHeight + "px";
+             } 
+           });
+         }
+            }
+      </script>
+   </head>
+   <body>
+      <a href="https://docs.google.com/spreadsheets/d/1n1T9ncenNKIsB9xkeCFpeitjbE5dN0jr8-fmo8uLWXU/edit#gid=0"><img class="doomimg" src="DOOMDATA_files/Mask_200x.webp"></a>
+      <input type="search" id="search" placeholder="search..." autofocus="autofocus">
+      <div class="menu" id= "main">
+         <section id="projects">projects</section>
+         <section id="songs">songs</section>
+         <section id="interviews">interviews</section>
+      </div>
+      <div class="back-button" id="scroll">scroll</div>
+      <div class="back-button" id="back-button">back</div>
+      <div class="menu" id="projectlist">
+         <script>projectList();</script>
+      </div>
+      <div class="menu" id ="songs"></div>
+      <div class="menu" id ="interviews"></div>
+      <div class='modal-background'>
+         <div class='modal-content' id='modal-content'></div>
+      </div>
+      <div class="feedback"><a href="https://docs.google.com/forms/d/e/1FAIpQLScQqvx082NuK_04MmuGWgDLWsTXBgDyL4RQBWtveKLAE3wHEA/viewform">feedback</a></div>
+      <div class="version">v. 0.35</div>
+      <script>
+         var input = document.getElementById("search");
+         input.addEventListener("keyup", function(event) {
+           if (event.keyCode === 13) {
+            event.preventDefault();
+              $("div#boogie").removeClass("hidden");
+           }
+         });
+      </script>
+   </body>
+</html>
